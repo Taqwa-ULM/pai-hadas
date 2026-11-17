@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Interaktif Fiqih (Hadas Besar & Kecil) - Kelas 7.1 SMP Al Mazaya</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8f6f0; /* Warm Cream background inspired by reference */
+            color: #1e293b;
+        }
+        .emerald-gradient {
+            background: linear-gradient(135deg, #064e3b 0%, #0f5e47 50%, #047857 100%);
+        }
+        .gold-accent {
+            color: #d97706;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        /* Drag & Drop / Tap Chip Animations */
+        .option-chip {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            user-select: none;
+        }
+        .option-chip:active {
+            transform: scale(0.95);
+        }
+        .blank-slot {
+            transition: all 0.2s ease;
+            min-width: 110px;
+        }
+        .blank-slot.drag-over {
+            background-color: #d1fae5;
+            border-color: #059669;
+            transform: scale(1.03);
+        }
+        @media print {
+            body * { visibility: hidden; }
+            #printableArea, #printableArea * { visibility: visible; }
+            #printableArea { position: absolute; left: 0; top: 0; width: 100%; background: white; }
+            .no-print { display: none !important; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between antialiased selection:bg-emerald-200 selection:text-emerald-900">
+
+    <!-- HEADER / NAVBAR -->
+    <header class="emerald-gradient text-white shadow-lg sticky top-0 z-40 border-b border-emerald-700/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="showView('home')">
+                <div class="w-10 h-10 sm:w-11 sm:h-11 bg-white/10 rounded-xl backdrop-blur-md border border-white/20 flex items-center justify-center shadow-inner">
+                    <i class="fa-solid fa-book-quran text-xl sm:text-2xl text-amber-300"></i>
+                </div>
+                <div>
+                    <h1 class="text-base sm:text-lg font-extrabold leading-tight tracking-tight">Portal Evaluasi Ilmu Fiqih</h1>
+                    <p class="text-[11px] sm:text-xs text-emerald-100 font-medium">SMP Al Mazaya Banjarmasin • Kelas 7.1</p>
+                </div>
+            </div>
+
+            <nav class="flex flex-wrap items-center gap-2">
+                <button onclick="openClassPortal()" class="px-3 py-1.5 rounded-xl text-xs font-bold transition bg-white/10 hover:bg-white/20 border border-white/20 flex items-center gap-1.5">
+                    <i class="fa-solid fa-users text-amber-300"></i> <span>Portal Kelas 7.1</span>
+                </button>
+                <button onclick="openStudentListPortal()" class="px-3 py-1.5 rounded-xl text-xs font-bold transition bg-emerald-500/30 hover:bg-emerald-500/50 border border-emerald-300/30 text-emerald-50 flex items-center gap-1.5">
+                    <i class="fa-solid fa-id-card-clip"></i> <span class="hidden sm:inline">List Murid (24)</span><span class="sm:hidden">Murid</span>
+                </button>
+                <button onclick="openTeacherPortal()" class="px-3 py-1.5 rounded-xl text-xs font-bold transition bg-amber-400 text-slate-900 hover:bg-amber-300 shadow flex items-center gap-1.5">
+                    <i class="fa-solid fa-chart-pie"></i> <span>Dashboard Guru</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex-grow w-full">
+
+        <!-- 1. VIEW HOME -->
+        <section id="viewHome" class="space-y-8 py-2">
+            <!-- Hero Banner -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-emerald-900/10 shadow-sm relative overflow-hidden">
+                <div class="max-w-3xl space-y-3 relative z-10">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                        <i class="fa-solid fa-mosque text-emerald-600"></i> Materi Bab Thaharah • Halaman 18–20
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 leading-tight">
+                        Kuis Interaktif: <span class="text-emerald-800">Hadas Besar & Hadas Kecil</span>
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                        Uji pemahamanmu mengenai pengertian hadas, sebab-sebab hadas besar dan kecil, larangan saat berhadas, serta tata cara mandi wajib (janabah) melalui 20 soal interaktif (Pilihan Ganda, Mencocokkan, dan Lengkapi Kalimat).
+                    </p>
+                </div>
+                <i class="fa-solid fa-kaaba absolute -right-6 -bottom-8 text-9xl text-emerald-900/5 pointer-events-none"></i>
+            </div>
+
+            <!-- 3 Cards Menu -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <!-- Card Masuk Kuis -->
+                <div onclick="openClassPortal()" class="group bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-emerald-600 transition-all duration-300 cursor-pointer flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-800 text-white flex items-center justify-center text-xl shadow-md shadow-emerald-900/20">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-bold text-emerald-700 uppercase tracking-wider block">Mulai Evaluasi</span>
+                            <h3 class="text-xl font-black text-slate-900">Login Kelas 7.1</h3>
+                            <p class="text-xs text-slate-500 mt-1">20 Soal Interaktif • Skor Otomatis & Terkirim ke Guru.</p>
+                        </div>
+                    </div>
+                    <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-emerald-800 group-hover:translate-x-1 transition-transform">
+                        <span>Masuk & Kerjakan Kuis</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <!-- Card Direktori Murid -->
+                <div onclick="openStudentListPortal()" class="group bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-teal-600 transition-all duration-300 cursor-pointer flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="w-12 h-12 rounded-2xl bg-teal-600 text-white flex items-center justify-center text-xl shadow-md shadow-teal-600/20">
+                            <i class="fa-solid fa-id-card-clip"></i>
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-bold text-teal-600 uppercase tracking-wider block">Direktori Kelas</span>
+                            <h3 class="text-xl font-black text-slate-900">List Murid 7.1</h3>
+                            <p class="text-xs text-slate-500 mt-1">24 Murid terdaftar sesuai jurnal kehadiran kelas.</p>
+                        </div>
+                    </div>
+                    <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-teal-700 group-hover:translate-x-1 transition-transform">
+                        <span>Pilih Nama Cepat</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <!-- Card Dashboard Guru -->
+                <div onclick="openTeacherPortal()" class="group bg-slate-900 text-white rounded-2xl p-6 border border-slate-800 shadow-sm hover:shadow-xl hover:border-amber-400 transition-all duration-300 cursor-pointer flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="w-12 h-12 rounded-2xl bg-amber-400 text-slate-900 flex items-center justify-center text-xl shadow-md shadow-amber-400/20">
+                            <i class="fa-solid fa-chart-pie"></i>
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wider block">Akses Pendidik</span>
+                            <h3 class="text-xl font-black text-white">Dashboard Guru</h3>
+                            <p class="text-xs text-slate-400 mt-1">Pantau nilai kuis 20 soal & rekap otomatis ke Excel/PDF.</p>
+                        </div>
+                    </div>
+                    <div class="mt-5 pt-3 border-t border-slate-800 flex items-center justify-between text-xs font-bold text-amber-400 group-hover:translate-x-1 transition-transform">
+                        <span>Buka Dashboard</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. VIEW LIST MURID -->
+        <section id="viewStudentList" class="hidden space-y-5 max-w-5xl mx-auto">
+            <button onclick="showView('home')" class="text-xs font-bold text-emerald-800 hover:text-emerald-950 flex items-center gap-1.5 transition">
+                <i class="fa-solid fa-arrow-left"></i> Kembali ke Menu Utama
+            </button>
+
+            <div class="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
+                    <div>
+                        <h2 class="text-xl font-black text-slate-900">Daftar Murid Kelas 7.1</h2>
+                        <p class="text-xs text-slate-500">Klik tombol "Pilih" pada namamu untuk langsung masuk ke halaman login kuis.</p>
+                    </div>
+                    <div class="relative w-full sm:w-72">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400 text-xs">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </span>
+                        <input type="text" id="studentListSearchInput" oninput="renderStudentListCards()" placeholder="Cari nama murid..." class="w-full pl-8 pr-3 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs outline-none focus:bg-white focus:ring-2 focus:ring-emerald-600">
+                    </div>
+                </div>
+
+                <div id="studentListCardsContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pt-1"></div>
+            </div>
+        </section>
+
+        <!-- 3. VIEW LOGIN MURID -->
+        <section id="viewStudentAuth" class="hidden max-w-md mx-auto space-y-5 py-4">
+            <button onclick="showView('home')" class="text-xs font-bold text-emerald-800 hover:text-emerald-950 flex items-center gap-1.5 transition">
+                <i class="fa-solid fa-arrow-left"></i> Kembali ke Menu Utama
+            </button>
+
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200 space-y-5">
+                <div class="text-center space-y-1.5">
+                    <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-emerald-800 text-white text-2xl shadow-lg mb-1">
+                        <i class="fa-solid fa-user-graduate"></i>
+                    </div>
+                    <h2 class="text-2xl font-black text-slate-900">Login Kuis Murid</h2>
+                    <p class="text-xs text-slate-500">Khusus Murid <span class="font-extrabold text-emerald-700">Kelas 7.1</span></p>
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Ketik Nama Lengkap / Panggilan:</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400 text-sm">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </span>
+                            <input type="text" id="loginStudentInput" oninput="detectStudentName()" placeholder="Contoh: Adzkiya, Nabil, Tristan..." class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-xs font-medium focus:bg-white focus:ring-2 focus:ring-emerald-600 outline-none">
+                        </div>
+
+                        <div id="studentDetectResult" class="hidden mt-2 p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs space-y-0.5">
+                            <span class="font-extrabold text-emerald-900 block text-sm" id="detectedNameText">--</span>
+                            <span class="text-[11px] text-emerald-700 block" id="detectedClassText">--</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Password Murid:</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400 text-sm">
+                                <i class="fa-solid fa-key"></i>
+                            </span>
+                            <input type="password" id="loginStudentPass" placeholder="Password default: amz" class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-xs font-medium focus:bg-white focus:ring-2 focus:ring-emerald-600 outline-none">
+                        </div>
+                        <p class="text-[11px] text-slate-400 mt-1"><i class="fa-solid fa-circle-info mr-1"></i>Password murid default adalah <code class="bg-slate-100 px-1.5 py-0.5 rounded text-emerald-700 font-bold">amz</code></p>
+                    </div>
+
+                    <button onclick="processStudentLogin()" class="w-full bg-emerald-800 hover:bg-emerald-900 text-white font-extrabold py-3.5 rounded-xl shadow-lg shadow-emerald-900/20 transition text-xs flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-play"></i> MULAI KERJAKAN KUIS (20 SOAL)
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. VIEW LOGIN GURU -->
+        <section id="viewTeacherAuth" class="hidden max-w-md mx-auto space-y-5 py-4">
+            <button onclick="showView('home')" class="text-xs font-bold text-slate-600 hover:text-slate-900 flex items-center gap-1.5 transition">
+                <i class="fa-solid fa-arrow-left"></i> Kembali ke Menu Utama
+            </button>
+
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200 space-y-5">
+                <div class="text-center space-y-1.5">
+                    <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-amber-400 text-slate-900 text-2xl shadow-lg mb-1">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <h2 class="text-2xl font-black text-slate-900">Login Dashboard Guru</h2>
+                    <p class="text-xs text-slate-500">Akses Rekapitulasi Nilai Fiqih Kelas 7.1</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Username Guru:</label>
+                        <input type="text" id="loginTeacherId" placeholder="Masukkan username (guru)" class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-xs font-medium focus:bg-white focus:ring-2 focus:ring-emerald-600 outline-none">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Password Guru:</label>
+                        <input type="password" id="loginTeacherPass" placeholder="Masukkan password (admin)" class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-xs font-medium focus:bg-white focus:ring-2 focus:ring-emerald-600 outline-none">
+                    </div>
+
+                    <button onclick="processTeacherLogin()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-extrabold py-3.5 rounded-xl shadow-lg transition text-xs flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-right-to-bracket"></i> MASUK DASHBOARD GURU
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. VIEW INTERACTIVE QUIZ (16:9 LAPTOP OPTIMIZED + PORTRAIT MOBILE FRIENDLY) -->
+        <section id="viewQuizWorkspace" class="hidden space-y-4">
+            <!-- Top Student Info Bar -->
+            <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex flex-wrap items-center justify-between gap-3">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-800 text-white flex items-center justify-center font-black text-sm">
+                        7.1
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h2 id="quizStudentName" class="text-sm sm:text-base font-black text-slate-900">--</h2>
+                            <span id="quizStatusBadge" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800">Sedang Mengerjakan</span>
+                        </div>
+                        <p class="text-[11px] text-slate-500">Materi: Hadas Besar & Hadas Kecil (20 Soal)</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <div class="text-right">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase block">Terjawab</span>
+                        <span id="quizProgressCount" class="text-sm font-black text-emerald-700">0 / 20</span>
+                    </div>
+                    <button onclick="confirmSubmitQuiz()" id="btnSubmitQuizTop" class="bg-emerald-700 hover:bg-emerald-800 text-white px-4 py-2.5 rounded-xl text-xs font-extrabold shadow-md transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-paper-plane"></i> <span>Kumpulkan</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 16:9 Split Layout on Desktop/Laptop (Left: Question Stage, Right: Navigator & Summary) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+                
+                <!-- LEFT / MAIN QUESTION AREA (8 Columns on Laptop) -->
+                <div class="lg:col-span-8 bg-white rounded-3xl p-5 sm:p-7 border border-slate-200 shadow-sm flex flex-col justify-between min-h-[430px]">
+                    <div id="questionStageContainer" class="space-y-5">
+                        <!-- Dynamic Question Content Rendered Here -->
+                    </div>
+
+                    <!-- Navigation Footer inside Question Card -->
+                    <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between gap-3">
+                        <button onclick="prevQuestion()" id="btnPrevQ" class="px-4 py-2.5 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition flex items-center gap-1.5 disabled:opacity-40">
+                            <i class="fa-solid fa-chevron-left"></i> <span>Sebelumnya</span>
+                        </button>
+
+                        <span id="questionStepIndicator" class="text-xs font-extrabold text-slate-400">Soal 1 dari 20</span>
+
+                        <button onclick="nextQuestion()" id="btnNextQ" class="px-5 py-2.5 rounded-xl text-xs font-bold bg-emerald-800 hover:bg-emerald-900 text-white transition flex items-center gap-1.5 shadow-sm">
+                            <span>Selanjutnya</span> <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- RIGHT SIDEBAR: QUESTION NAVIGATOR & LEGEND (4 Columns on Laptop) -->
+                <div class="lg:col-span-4 space-y-4">
+                    <!-- Result Banner (Shown after submission) -->
+                    <div id="quizResultSummaryCard" class="hidden bg-gradient-to-br from-emerald-900 to-teal-800 text-white rounded-3xl p-5 shadow-lg space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold uppercase tracking-wider text-emerald-200">Hasil Evaluasi Kuis</span>
+                            <i class="fa-solid fa-award text-2xl text-amber-300"></i>
+                        </div>
+                        <div class="flex items-baseline gap-2">
+                            <span id="finalScoreDisplay" class="text-4xl font-black text-amber-300">0</span>
+                            <span class="text-xs text-emerald-100">/ 100 Poin</span>
+                        </div>
+                        <p id="finalScoreFeedback" class="text-xs text-emerald-100 leading-relaxed">--</p>
+                        <div class="pt-2 flex flex-wrap gap-2">
+                            <button onclick="openProofModal()" class="flex-1 bg-white text-emerald-900 hover:bg-emerald-50 py-2 px-3 rounded-xl text-xs font-extrabold transition flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-file-pdf"></i> Bukti Nilai
+                            </button>
+                            <button onclick="showView('home')" class="bg-emerald-700 hover:bg-emerald-600 text-white py-2 px-3 rounded-xl text-xs font-bold transition">
+                                Selesai
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Question Grid Navigator -->
+                    <div class="bg-white rounded-3xl p-5 border border-slate-200 shadow-sm space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                            <h3 class="text-xs font-black uppercase tracking-wider text-slate-800">Navigasi 20 Soal</h3>
+                            <span class="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-lg">Klik Nomor</span>
+                        </div>
+
+                        <!-- 5x4 Grid for 20 Questions -->
+                        <div id="questionNavGrid" class="grid grid-cols-5 gap-2"></div>
+
+                        <!-- Legend -->
+                        <div class="pt-3 border-t border-slate-100 grid grid-cols-2 gap-2 text-[11px] text-slate-500 font-medium">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-3 h-3 rounded bg-emerald-700 inline-block"></span> Sudah Dijawab
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-3 h-3 rounded bg-slate-100 border border-slate-300 inline-block"></span> Belum Dijawab
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-3 h-3 rounded ring-2 ring-amber-400 bg-white inline-block"></span> Posisi Aktif
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="text-emerald-700 font-bold">PG / Jodoh / Isian</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. VIEW TEACHER DASHBOARD -->
+        <section id="viewTeacherDashboard" class="hidden space-y-6">
+            <div class="flex flex-wrap items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-2xl font-black text-slate-900">Dashboard Rekap Nilai Guru</h2>
+                    <p class="text-xs text-slate-500">Hasil Kuis Interaktif Fiqih (20 Soal) • Kelas 7.1 SMP Al Mazaya</p>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-2">
+                    <button onclick="manualRefreshTeacherDashboard()" class="bg-amber-400 hover:bg-amber-300 text-slate-900 px-3.5 py-2.5 rounded-xl text-xs font-extrabold shadow flex items-center gap-1.5 transition">
+                        <i class="fa-solid fa-rotate" id="iconTeacherRefresh"></i>
+                        <span>Refresh Spreadsheet</span>
+                    </button>
+                    <button onclick="copyTeacherScores()" class="bg-emerald-700 hover:bg-emerald-800 text-white px-3.5 py-2.5 rounded-xl text-xs font-bold shadow flex items-center gap-1.5 transition">
+                        <i class="fa-solid fa-copy"></i> Salin Nilai (Excel)
+                    </button>
+                    <button onclick="exportTeacherCsv()" class="bg-slate-800 hover:bg-slate-900 text-white px-3.5 py-2.5 rounded-xl text-xs font-bold shadow flex items-center gap-1.5 transition">
+                        <i class="fa-solid fa-file-csv"></i> Unduh CSV
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Row -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-sm">
+                    <span class="text-xs text-slate-500 font-bold block">Total Murid 7.1</span>
+                    <span id="statTotalStudents" class="text-2xl font-black text-slate-900 mt-1 block">24</span>
+                </div>
+                <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-sm">
+                    <span class="text-xs text-slate-500 font-bold block">Sudah Mengumpulkan</span>
+                    <span id="statSubmittedCount" class="text-2xl font-black text-emerald-600 mt-1 block">0</span>
+                </div>
+                <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-sm">
+                    <span class="text-xs text-slate-500 font-bold block">Belum Mengerjakan</span>
+                    <span id="statPendingCount" class="text-2xl font-black text-rose-500 mt-1 block">24</span>
+                </div>
+                <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-sm">
+                    <span class="text-xs text-slate-500 font-bold block">Rata-Rata Nilai</span>
+                    <span id="statAverageScore" class="text-2xl font-black text-amber-600 mt-1 block">0</span>
+                </div>
+            </div>
+
+            <!-- Search & Table -->
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="p-4 border-b border-slate-100 flex flex-wrap items-center justify-between gap-3">
+                    <span class="text-xs font-extrabold text-slate-700 uppercase tracking-wider">Daftar Nilai Murid Kelas 7.1</span>
+                    <div class="relative w-full sm:w-64">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400 text-xs">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </span>
+                        <input type="text" id="teacherSearchInput" oninput="renderTeacherTable()" placeholder="Cari nama murid..." class="w-full pl-8 pr-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs outline-none focus:bg-white focus:ring-2 focus:ring-emerald-600">
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs">
+                        <thead class="bg-emerald-950 text-emerald-50 uppercase tracking-wider font-semibold">
+                            <tr>
+                                <th class="p-3.5 text-center w-12">No</th>
+                                <th class="p-3.5">Nama Lengkap Murid</th>
+                                <th class="p-3.5 text-center">Status</th>
+                                <th class="p-3.5 text-center">Benar</th>
+                                <th class="p-3.5 text-center">Nilai Akhir</th>
+                                <th class="p-3.5 text-center">Waktu Selesai</th>
+                            </tr>
+                        </thead>
+                        <tbody id="teacherTableBody" class="divide-y divide-slate-100 font-medium text-slate-700"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-emerald-950 text-emerald-200/80 py-4 px-4 text-center text-[11px] border-t border-emerald-900 no-print">
+        <p class="font-semibold text-white">Portal Evaluasi Pembelajaran Ilmu Fiqih • SMP Al Mazaya Banjarmasin</p>
+        <p class="mt-0.5">Materi Hadas Besar & Hadas Kecil • Kelas 7.1</p>
+    </footer>
+
+    <!-- CUSTOM ALERT / CONFIRM MODAL -->
+    <div id="customModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4 text-center">
+            <div id="modalIconContainer" class="w-14 h-14 rounded-full flex items-center justify-center mx-auto text-2xl"></div>
+            <h3 id="modalTitle" class="text-lg font-black text-slate-900">--</h3>
+            <p id="modalMessage" class="text-xs text-slate-600 leading-relaxed">--</p>
+            <div id="modalButtonsContainer" class="flex gap-2 pt-2">
+                <button onclick="closeCustomModal()" class="w-full bg-emerald-800 hover:bg-emerald-900 text-white font-bold py-2.5 rounded-xl text-xs shadow-md">
+                    Mengerti
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROOF OF COMPLETION MODAL -->
+    <div id="proofModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl">
+            <div class="p-4 bg-emerald-900 text-white flex justify-between items-center no-print">
+                <span class="font-bold text-xs flex items-center gap-2"><i class="fa-solid fa-certificate text-amber-300"></i> Bukti Hasil Kuis Fiqih</span>
+                <button onclick="closeProofModal()" class="text-white/80 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div id="printableArea" class="p-6 space-y-4">
+                <div class="border-b-2 border-emerald-900 pb-3 text-center">
+                    <h2 class="text-base font-black text-emerald-950 uppercase">SMP AL MAZAYA BANJARMASIN</h2>
+                    <p class="text-[11px] font-bold text-slate-500">TANDA BUKTI EVALUASI ILMU FIQIH • KELAS 7.1</p>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs space-y-2">
+                    <div class="flex justify-between">
+                        <span class="text-slate-500 font-bold">Nama Murid:</span>
+                        <span id="proofName" class="font-black text-slate-900">--</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-500 font-bold">Kelas:</span>
+                        <span class="font-bold text-emerald-700">7.1</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-500 font-bold">Materi:</span>
+                        <span class="font-semibold text-slate-800">Hadas Besar & Hadas Kecil</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-slate-500 font-bold">Waktu Selesai:</span>
+                        <span id="proofTime" class="font-medium text-slate-700">--</span>
+                    </div>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 text-center">
+                    <span class="text-[11px] font-bold text-emerald-800 uppercase block">Skor Akhir Evaluasi</span>
+                    <span id="proofScore" class="text-4xl font-black text-emerald-950 block my-1">0</span>
+                    <span id="proofCorrectDetail" class="text-xs font-semibold text-emerald-700">Benar 0 dari 20 Soal</span>
+                </div>
+            </div>
+            <div class="p-4 bg-slate-100 flex justify-end gap-2 no-print">
+                <button onclick="window.print()" class="bg-emerald-800 hover:bg-emerald-900 text-white px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5">
+                    <i class="fa-solid fa-print"></i> Cetak / Simpan PDF
+                </button>
+                <button onclick="closeProofModal()" class="bg-slate-600 text-white px-4 py-2 rounded-xl text-xs font-bold">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // =========================================================
+        // URL WEB APP GOOGLE APPS SCRIPT
+        // =========================================================
+        const DEFAULT_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyHUeBRSrA1PCjp9XFfS50vtMb8MPDQMfzfdDOmpIzmUFE8V6mdpMn4GGioVDQrDRMF/exec";
+
+        // =========================================================
+        // DATA 24 MURID KELAS 7.1 (Sesuai Jurnal Kehadiran Foto)
+        // =========================================================
+        const STUDENTS_71 = [
+            { id: "71_01", name: "Adzkiya Aulia Azzahra", nickname: "Adzkiya" },
+            { id: "71_02", name: "Ahmad Nabil Almer", nickname: "Nabil" },
+            { id: "71_03", name: "Aisya Nur Hafidza Rahman", nickname: "Aisya" },
+            { id: "71_04", name: "Aleesha Shidqia Achmad", nickname: "Aleesha" },
+            { id: "71_05", name: "Alyka Putri Riandianie", nickname: "Alyka" },
+            { id: "71_06", name: "Athifa Dyfanny Handarufithri", nickname: "Athifa" },
+            { id: "71_07", name: "Aurel Ramadhani Azhari Andy Susilo", nickname: "Aurel" },
+            { id: "71_08", name: "Delathifa Amira Azizah", nickname: "Delathifa" },
+            { id: "71_09", name: "Kanaya Azkayra Firdaus", nickname: "Kanaya" },
+            { id: "71_10", name: "Khansa Assyifa Muslim", nickname: "Khansa" },
+            { id: "71_11", name: "Kirana Anindya Qarim", nickname: "Kirana" },
+            { id: "71_12", name: "M. Atha'illah ramadhan Absha", nickname: "Atha" },
+            { id: "71_13", name: "Muhammad Fabyan Abqari", nickname: "Fabyan" },
+            { id: "71_14", name: "Muhammad Fatih Raditya", nickname: "Fatih" },
+            { id: "71_15", name: "Muhammad Raditya Devkhan", nickname: "Raditya" },
+            { id: "71_16", name: "Muhammad Raffi Ghaisan Badali", nickname: "Raffi" },
+            { id: "71_17", name: "Muhammad Rifki", nickname: "Rifki" },
+            { id: "71_18", name: "Nayyara Hafizah", nickname: "Nayyara" },
+            { id: "71_19", name: "Raden Keenan Akhtar Yudhistira", nickname: "Keenan" },
+            { id: "71_20", name: "Raisa Raqiyba Shafia", nickname: "Raisa" },
+            { id: "71_21", name: "Raisya Sarah Zaifa", nickname: "Raisya" },
+            { id: "71_22", name: "Reiifan Bumi Inderawan", nickname: "Reiifan" },
+            { id: "71_23", name: "Siti Aisyah Ramadani", nickname: "Aisyah" },
+            { id: "71_24", name: "Tristan Tristiawan", nickname: "Tristan" }
+        ];
+
+        // =========================================================
+        // BANK 20 SOAL INTERAKTIF (Materi Buku Ajar Ilmu Fiqih Hal. 18-20)
+        // Tipe: 'mcq' (Pilihan Ganda), 'match' (Mencocokkan), 'fill' (Seret/Klik Opsi)
+        // =========================================================
+        const QUIZ_QUESTIONS = [
+            // --- BAGIAN A: PILIHAN GANDA (10 SOAL) ---
+            {
+                id: 1,
+                type: "mcq",
+                category: "Pilihan Ganda",
+                question: "Menurut Buku Ajar Ilmu Fiqih, pengertian dari 'Hadas' adalah...",
+                options: [
+                    "Kotoran yang menempel pada pakaian sehingga menghalangi sahnya shalat",
+                    "Keadaan tidak suci pada diri seorang muslim yang menyebabkan tidak boleh beribadah seperti shalat dan thawaf",
+                    "Najis berat yang cara menyucikannya harus dibasuh tujuh kali dengan air dan tanah",
+                    "Keadaan seseorang yang lupa membaca niat sebelum melaksanakan ibadah wajib"
+                ],
+                correct: 1
+            },
+            {
+                id: 2,
+                type: "mcq",
+                category: "Pilihan Ganda",
+                question: "Apabila seseorang dalam keadaan berhadas besar dan ingin menyucikan diri, namun tidak menemukan air sama sekali, maka mandi wajib dapat diganti dengan...",
+                options: [
+                    "Berwudhu dengan air seadanya",
+                    "Membersihkan badan dengan tisu basah",
+                    "Tayammum",
+                    "Menunggu sampai menemukan air"
+                ],
+                correct: 2
+            },
+            {
+                id: 3,
+                type: "mcq",
+                category: "Pilihan Ganda",
+                question: "Perhatikan pernyataan berikut:\n1) Keluar mani karena bermimpi\n2) Tidur nyenyak\n3) Keluar darah haid dan nifas\n4) Menyentuh kemaluan dengan telapak tangan\n\nYang termasuk penyebab Hadas Besar ditunjukkan oleh nomor...",
+                options: [
+                    "1 dan 2",
+                    "1 dan 3",
+                    "2 dan 4",
+                    "3 dan 4"
+                ],
+                correct: 1
+            },
+            {
+                id: 4,
+                type: "mcq",
+                category: "Pilihan Ganda",
+                question: "Darah yang keluar dari rahim seorang ibu sesudah melahirkan disebut darah...",
+                options: [
+                    "Haid",
+                    "Wiladah",
+                    "Nifas",
+                    "Istihadhah"
+                ],
+                correct: 2
+            },
+            {
+                id: 5,
+                type: "mcq",
+                category: "Pilihan Ganda",
+                question: "Seseorang yang meninggal dunia wajib dimandikan karena termasuk sebab hadas besar, KECUALI orang yang meninggal dunia karena...",
+                options: [
+                    "Sakit menahun di rumah sakit",
+                    "Mati syahid dalam perang membela agama Allah",
+                    "Kecelakaan di perjalanan menuntut ilmu",
+                    "Tenggelam di lautan"
+                ],
+                correct: 1
+            },
+            {
+                id: 6,
+                type: "mcq",
+                category: "Pilihan Ganda",
+                question: "Di bawah ini yang merupakan hal yang diharamkan khusus bagi orang yang berhadas besar, namun TIDAK dilarang bagi orang yang berhadas kecil adalah...",
+                options: [
+                    "Melaksanakan shalat fardhu",
+                    "Melakukan thawaf di Ka'bah",
+                    "Berdiam diri (berhenti) di dalam masjid",
+                    "Menyentuh mushaf Al-Qur'an"
+                ],
+                correct: 2
+            },
+            {
+                id: 7,
+                type: "mcq",
+                category: "Pilihan Ganda",
+                question: "Dalam tata cara mandi wajib, membasuh kedua telapak tangan sampai pergelangan tangan di awal mandi dilakukan sebanyak...",
+                options: [
+                    "Satu kali",
+                    "Dua kali",
+                    "Tiga kali",
+                    "Tujuh kali"
+                ],
+                correct: 2
+            },
+            {
+                id: 8,
+                type: "mcq",
+                category: "Pilihan Ganda",
+                question: "Perbedaan tata cara menyela pangkal rambut saat mandi wajib antara laki-laki dan perempuan adalah...",
+                options: [
+                    "Laki-laki wajib menyela pangkal rambut dengan jari, sedangkan perempuan yang rambutnya dikepang cukup mengguyur kepalanya tiga kali tanpa mengurai kepangannya",
+                    "Perempuan wajib mengurai seluruh kepangan rambutnya, sedangkan laki-laki tidak perlu membasahi kepala",
+                    "Laki-laki cukup mengusap sebagian rambut, sedangkan perempuan wajib keramas dengan sampo",
+                    "Tidak ada perbedaan sama sekali antara laki-laki dan perempuan"
+                ],
+                correct: 0
+            },
+            {
+                id: 9,
+                type: "mcq",
+                category: "Pilihan Ganda",
+                question: "Dalam rukun dan tata cara mandi wajib, istilah 'Muwalat' memiliki arti...",
+                options: [
+                    "Mendahulukan anggota badan sebelah kiri",
+                    "Membaca niat di dalam hati dengan khusyuk",
+                    "Sambung-menyambung (berkesinambungan) dalam membasuh anggota badan",
+                    "Menggunakan air yang mengalir dari sungai"
+                ],
+                correct: 2
+            },
+            {
+                id: 10,
+                type: "mcq",
+                category: "Pilihan Ganda",
+                question: "Persentuhan kulit antara laki-laki dan perempuan yang bukan mahram tanpa ada batas penghalang termasuk penyebab...",
+                options: [
+                    "Hadas besar",
+                    "Hadas kecil",
+                    "Najis mutawassithah",
+                    "Najis mughallazhah"
+                ],
+                correct: 1
+            },
+
+            // --- BAGIAN B: MENCOCOKKAN / PASANGKAN (5 SOAL) ---
+            {
+                id: 11,
+                type: "match",
+                category: "Mencocokkan Istilah",
+                question: "Pasangkan jenis-jenis darah yang menyebabkan hadas besar di sebelah kiri dengan pengertiannya yang tepat di sebelah kanan!",
+                pairs: [
+                    { left: "Darah Haid", right: "Darah yang keluar dari perempuan sehat yang telah dewasa setiap bulannya" },
+                    { left: "Darah Nifas", right: "Darah yang keluar dari seorang ibu sehabis melahirkan" },
+                    { left: "Darah Wiladah", right: "Darah yang keluar ketika proses melahirkan" }
+                ]
+            },
+            {
+                id: 12,
+                type: "match",
+                category: "Mencocokkan Kategori",
+                question: "Pasangkan peristiwa berikut dengan jenis hadas yang ditimbulkannya!",
+                pairs: [
+                    { left: "Keluar sesuatu dari qubul atau dubur", right: "Menyebabkan Hadas Kecil" },
+                    { left: "Keluar mani karena bermimpi", right: "Menyebabkan Hadas Besar" },
+                    { left: "Hilang akal karena tidur atau mabuk", right: "Menyebabkan Hadas Kecil" }
+                ]
+            },
+            {
+                id: 13,
+                type: "match",
+                category: "Mencocokkan Tata Cara",
+                question: "Pasangkan tahapan mandi wajib berikut dengan urutan pelaksanaannya yang benar!",
+                pairs: [
+                    { left: "Langkah Pertama", right: "Membersihkan kemaluan dan kotoran di sekitarnya" },
+                    { left: "Langkah Keempat", right: "Berwudhu sebagaimana cara berwudhu untuk shalat" },
+                    { left: "Langkah Kelima", right: "Mengguyurkan air dimulai dari pundak kanan terus ke kepala dan seluruh tubuh" }
+                ]
+            },
+            {
+                id: 14,
+                type: "match",
+                category: "Mencocokkan Larangan",
+                question: "Pasangkan kondisi seseorang berikut dengan hukum ibadah yang berlaku baginya!",
+                pairs: [
+                    { left: "Wanita sedang haid", right: "Diharamkan melaksanakan puasa dan shalat" },
+                    { left: "Orang berhadas kecil", right: "Diharamkan menyentuh mushaf Al-Qur'an dan shalat" },
+                    { left: "Orang berhadas besar", right: "Dilarang berdiam diri di dalam masjid dan membaca Al-Qur'an" }
+                ]
+            },
+            {
+                id: 15,
+                type: "match",
+                category: "Mencocokkan Konsep",
+                question: "Pasangkan istilah fiqih di sebelah kiri dengan cara menyucikannya di sebelah kanan!",
+                pairs: [
+                    { left: "Hadas Kecil", right: "Disucikan dengan cara berwudhu kembali" },
+                    { left: "Hadas Besar", right: "Disucikan dengan cara mandi wajib (janabah)" },
+                    { left: "Tidak ada air saat berhadas", right: "Diganti dengan bertayammum menggunakan debu suci" }
+                ]
+            },
+
+            // --- BAGIAN C: FILL IN THE BLANK DENGAN SERET/KLIK OPSI DI BAWAH (5 SOAL) ---
+            {
+                id: 16,
+                type: "fill",
+                category: "Lengkapi Kalimat (Seret / Klik Kata)",
+                question: "Lengkapi pernyataan tentang pengertian dan pembagian hadas di bawah ini dengan menyeret (atau mengklik) kata yang tepat ke kotak kosong!",
+                template: [
+                    "Hadas adalah keadaan tidak ",
+                    { blankIndex: 0, answer: "suci" },
+                    " pada diri seorang muslim yang menyebabkan tidak boleh beribadah seperti shalat dan ",
+                    { blankIndex: 1, answer: "thawaf" },
+                    ". Hadas terbagi menjadi dua macam, yaitu hadas besar dan hadas ",
+                    { blankIndex: 2, answer: "kecil" },
+                    "."
+                ],
+                wordBank: ["suci", "thawaf", "kecil", "bersih", "puasa"]
+            },
+            {
+                id: 17,
+                type: "fill",
+                category: "Lengkapi Kalimat (Seret / Klik Kata)",
+                question: "Lengkapi urutan awal pelaksanaan mandi wajib berikut ini!",
+                template: [
+                    "Mandi wajib dimulai dengan membersihkan ",
+                    { blankIndex: 0, answer: "kemaluannya" },
+                    " dan kotoran di sekitarnya. Kemudian mengucapkan ",
+                    { blankIndex: 1, answer: "bismillah" },
+                    " dan berniat untuk menghilangkan ",
+                    { blankIndex: 2, answer: "hadas besar" },
+                    "."
+                ],
+                wordBank: ["kemaluannya", "bismillah", "hadas besar", "wajahnya", "alhamdulillah"]
+            },
+            {
+                id: 18,
+                type: "fill",
+                category: "Lengkapi Kalimat (Seret / Klik Kata)",
+                question: "Lengkapi tata cara membasuh telapak tangan dan anggota badan saat mandi wajib!",
+                template: [
+                    "Membasuh kedua telapak tangan dilakukan dengan cara ",
+                    { blankIndex: 0, answer: "mengguyur" },
+                    " menggunakan air yang diambil dengan gayung, bukan ",
+                    { blankIndex: 1, answer: "mencelupkan" },
+                    " tangan ke bak air. Saat membasuh badan, dahulukan bagian ",
+                    { blankIndex: 2, answer: "kanan" },
+                    " daripada yang kiri."
+                ],
+                wordBank: ["mengguyur", "mencelupkan", "kanan", "kiri", "merendam"]
+            },
+            {
+                id: 19,
+                type: "fill",
+                category: "Lengkapi Kalimat (Seret / Klik Kata)",
+                question: "Lengkapi pernyataan mengenai larangan ketika berhadas besar berikut!",
+                template: [
+                    "Bagi orang yang sedang berhadas besar, diharamkan melaksanakan shalat, thawaf, khutbah ",
+                    { blankIndex: 0, answer: "jum'at" },
+                    ", menyentuh serta membaca ",
+                    { blankIndex: 1, answer: "Al-Qur'an" },
+                    ", berhenti di dalam ",
+                    { blankIndex: 2, answer: "masjid" },
+                    ", dan puasa bagi wanita haid."
+                ],
+                wordBank: ["jum'at", "Al-Qur'an", "masjid", "dzuhur", "rumah"]
+            },
+            {
+                id: 20,
+                type: "fill",
+                category: "Lengkapi Kalimat (Seret / Klik Kata)",
+                question: "Lengkapi sebab-sebab hadas kecil di bawah ini!",
+                template: [
+                    "Seseorang berhadas kecil apabila keluar sesuatu dari dua lubang yaitu ",
+                    { blankIndex: 0, answer: "qubul" },
+                    " dan dubur, hilang akalnya seperti ",
+                    { blankIndex: 1, answer: "tidur" },
+                    ", serta menyentuh kemaluan dengan ",
+                    { blankIndex: 2, answer: "telapak tangan" },
+                    " atau jari."
+                ],
+                wordBank: ["qubul", "tidur", "telapak tangan", "siku", "makan"]
+            }
+        ];
+
+        // =========================================================
+        // STATE MANAGEMENT
+        // =========================================================
+        let currentUser = null;
+        let detectedCandidate = null;
+        let currentQuestionIdx = 0;
+        let userAnswers = {}; // { qId: answerValue }
+        let isQuizSubmitted = false;
+        let activeBlankSelection = null; // For tap-to-fill accessibility on mobile/laptop
+        let teacherRecords = {}; // { studentId: { score, correctCount, submittedAt, status } }
+
+        // =========================================================
+        // NAVIGATION & VIEWS
+        // =========================================================
+        function showView(viewId) {
+            const sections = ['viewHome', 'viewStudentList', 'viewStudentAuth', 'viewTeacherAuth', 'viewQuizWorkspace', 'viewTeacherDashboard'];
+            sections.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.add('hidden');
+            });
+
+            const map = {
+                'home': 'viewHome',
+                'studentList': 'viewStudentList',
+                'studentAuth': 'viewStudentAuth',
+                'teacherAuth': 'viewTeacherAuth',
+                'quiz': 'viewQuizWorkspace',
+                'teacherDash': 'viewTeacherDashboard'
+            };
+
+            const target = document.getElementById(map[viewId] || viewId);
+            if (target) target.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openClassPortal() {
+            document.getElementById('loginStudentInput').value = '';
+            document.getElementById('loginStudentPass').value = '';
+            document.getElementById('studentDetectResult').classList.add('hidden');
+            detectedCandidate = null;
+            showView('studentAuth');
+        }
+
+        function openStudentListPortal() {
+            document.getElementById('studentListSearchInput').value = '';
+            renderStudentListCards();
+            showView('studentList');
+        }
+
+        function openTeacherPortal() {
+            document.getElementById('loginTeacherId').value = '';
+            document.getElementById('loginTeacherPass').value = '';
+            showView('teacherAuth');
+        }
+
+        // =========================================================
+        // STUDENT DIRECTORY & AUTH
+        // =========================================================
+        function renderStudentListCards() {
+            const container = document.getElementById('studentListCardsContainer');
+            const search = document.getElementById('studentListSearchInput').value.trim().toLowerCase();
+            container.innerHTML = '';
+
+            const filtered = STUDENTS_71.filter(st =>
+                !search || st.name.toLowerCase().includes(search) || st.nickname.toLowerCase().includes(search)
+            );
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-center py-8 text-xs text-slate-400">Nama murid tidak ditemukan.</div>`;
+                return;
+            }
+
+            filtered.forEach((st, index) => {
+                const rec = teacherRecords[st.id];
+                const card = document.createElement('div');
+                card.className = "p-3.5 bg-slate-50 border border-slate-200 hover:border-emerald-600 rounded-2xl transition flex items-center justify-between gap-2";
+                card.innerHTML = `
+                    <div class="min-w-0">
+                        <span class="text-[10px] font-bold text-emerald-700 block">Absen #${st.id.split('_')[1]}</span>
+                        <span class="font-bold text-slate-900 text-xs truncate block">${st.name}</span>
+                        <span class="text-[11px] text-slate-500 block">Panggilan: "${st.nickname}" ${rec ? `• <b class="text-emerald-700">Nilai: ${rec.score}</b>` : ''}</span>
+                    </div>
+                    <button onclick="quickSelectStudent('${st.id}')" class="bg-emerald-800 hover:bg-emerald-900 text-white px-3 py-2 rounded-xl text-xs font-bold transition flex-shrink-0">
+                        Pilih
+                    </button>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function quickSelectStudent(studentId) {
+            const found = STUDENTS_71.find(s => s.id === studentId);
+            if (!found) return;
+            detectedCandidate = found;
+            document.getElementById('loginStudentInput').value = found.name;
+            document.getElementById('detectedNameText').textContent = found.name;
+            document.getElementById('detectedClassText').textContent = `Kelas 7.1 • Panggilan: "${found.nickname}"`;
+            document.getElementById('studentDetectResult').classList.remove('hidden');
+            showView('studentAuth');
+        }
+
+        function detectStudentName() {
+            const val = document.getElementById('loginStudentInput').value.trim().toLowerCase();
+            const box = document.getElementById('studentDetectResult');
+            if (!val) {
+                box.classList.add('hidden');
+                detectedCandidate = null;
+                return;
+            }
+
+            const match = STUDENTS_71.find(st =>
+                st.name.toLowerCase().includes(val) || st.nickname.toLowerCase().includes(val)
+            );
+
+            if (match) {
+                detectedCandidate = match;
+                document.getElementById('detectedNameText').textContent = match.name;
+                document.getElementById('detectedClassText').textContent = `Terdaftar di Kelas 7.1 (Panggilan: "${match.nickname}")`;
+                box.classList.remove('hidden');
+            } else {
+                detectedCandidate = null;
+                box.classList.add('hidden');
+            }
+        }
+
+        function processStudentLogin() {
+            const pass = document.getElementById('loginStudentPass').value.trim();
+            if (!detectedCandidate) {
+                showModal('Nama Tidak Ditemukan', 'Silakan ketik nama lengkap atau panggilanmu yang terdaftar di Kelas 7.1.', 'warning');
+                return;
+            }
+            if (pass !== 'amz') {
+                showModal('Password Salah', 'Password default murid adalah "amz".', 'error');
+                return;
+            }
+
+            currentUser = detectedCandidate;
+            startQuizSession();
+        }
+
+        function processTeacherLogin() {
+            const u = document.getElementById('loginTeacherId').value.trim();
+            const p = document.getElementById('loginTeacherPass').value.trim();
+            if (u === 'guru' && p === 'admin') {
+                showView('teacherDash');
+                manualRefreshTeacherDashboard();
+            } else {
+                showModal('Login Gagal', 'Username atau Password Guru salah (Default: guru / admin).', 'error');
+            }
+        }
+
+        // =========================================================
+        // QUIZ ENGINE (MCQ, MATCHING, FILL IN THE BLANK DRAG & TAP)
+        // =========================================================
+        function startQuizSession() {
+            currentQuestionIdx = 0;
+            userAnswers = {};
+            isQuizSubmitted = false;
+            activeBlankSelection = null;
+
+            document.getElementById('quizStudentName').textContent = currentUser.name;
+            document.getElementById('quizStatusBadge').textContent = "Sedang Mengerjakan";
+            document.getElementById('quizStatusBadge').className = "px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800";
+            document.getElementById('quizResultSummaryCard').classList.add('hidden');
+            document.getElementById('btnSubmitQuizTop').classList.remove('hidden');
+
+            showView('quiz');
+            renderNavigatorGrid();
+            renderCurrentQuestion();
+        }
+
+        function isQuestionAnswered(q) {
+            const ans = userAnswers[q.id];
+            if (ans === undefined || ans === null) return false;
+            if (q.type === 'mcq') return typeof ans === 'number';
+            if (q.type === 'match') {
+                return Object.keys(ans).length === q.pairs.length && Object.values(ans).every(v => v !== "");
+            }
+            if (q.type === 'fill') {
+                const blankCount = q.template.filter(part => typeof part === 'object').length;
+                return Array.isArray(ans) && ans.filter(v => v && v.trim() !== "").length === blankCount;
+            }
+            return false;
+        }
+
+        function updateProgressCounter() {
+            let answered = 0;
+            QUIZ_QUESTIONS.forEach(q => {
+                if (isQuestionAnswered(q)) answered++;
+            });
+            document.getElementById('quizProgressCount').textContent = `${answered} / ${QUIZ_QUESTIONS.length}`;
+        }
+
+        function renderNavigatorGrid() {
+            const grid = document.getElementById('questionNavGrid');
+            grid.innerHTML = '';
+
+            QUIZ_QUESTIONS.forEach((q, idx) => {
+                const answered = isQuestionAnswered(q);
+                const isActive = idx === currentQuestionIdx;
+
+                let btnClass = "h-10 rounded-xl text-xs font-extrabold transition flex items-center justify-center border ";
+                if (isQuizSubmitted) {
+                    const correct = evaluateQuestionScore(q) === 1;
+                    btnClass += correct
+                        ? "bg-emerald-600 text-white border-emerald-700 "
+                        : "bg-rose-500 text-white border-rose-600 ";
+                } else if (answered) {
+                    btnClass += "bg-emerald-700 text-white border-emerald-800 shadow-sm ";
+                } else {
+                    btnClass += "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100 ";
+                }
+
+                if (isActive) {
+                    btnClass += "ring-2 ring-amber-400 ring-offset-1 scale-105 ";
+                }
+
+                const btn = document.createElement('button');
+                btn.className = btnClass;
+                btn.textContent = idx + 1;
+                btn.onclick = () => {
+                    currentQuestionIdx = idx;
+                    activeBlankSelection = null;
+                    renderNavigatorGrid();
+                    renderCurrentQuestion();
+                };
+                grid.appendChild(btn);
+            });
+
+            updateProgressCounter();
+        }
+
+        function renderCurrentQuestion() {
+            const q = QUIZ_QUESTIONS[currentQuestionIdx];
+            const stage = document.getElementById('questionStageContainer');
+            document.getElementById('questionStepIndicator').textContent = `Soal ${currentQuestionIdx + 1} dari ${QUIZ_QUESTIONS.length}`;
+            document.getElementById('btnPrevQ').disabled = currentQuestionIdx === 0;
+
+            const nextBtn = document.getElementById('btnNextQ');
+            if (currentQuestionIdx === QUIZ_QUESTIONS.length - 1) {
+                nextBtn.innerHTML = isQuizSubmitted
+                    ? `<span>Lihat Hasil</span> <i class="fa-solid fa-award"></i>`
+                    : `<span>Selesai & Kumpul</span> <i class="fa-solid fa-check-double"></i>`;
+                nextBtn.onclick = isQuizSubmitted ? () => window.scrollTo({ top: 0, behavior: 'smooth' }) : confirmSubmitQuiz;
+            } else {
+                nextBtn.innerHTML = `<span>Selanjutnya</span> <i class="fa-solid fa-chevron-right"></i>`;
+                nextBtn.onclick = nextQuestion;
+            }
+
+            // Badge color by type
+            let badgeStyle = "bg-emerald-100 text-emerald-800";
+            if (q.type === 'match') badgeStyle = "bg-amber-100 text-amber-800";
+            if (q.type === 'fill') badgeStyle = "bg-teal-100 text-teal-800";
+
+            let headerHtml = `
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
+                    <div class="flex items-center gap-2">
+                        <span class="px-3 py-1 rounded-xl bg-emerald-900 text-white text-xs font-black">No. ${q.id}</span>
+                        <span class="px-3 py-1 rounded-xl text-[11px] font-bold ${badgeStyle}">${q.category}</span>
+                    </div>
+                    <span class="text-[11px] font-semibold text-slate-400">Bobot: 5 Poin</span>
+                </div>
+                <div class="text-sm sm:text-base font-bold text-slate-900 leading-relaxed whitespace-pre-line">
+                    ${q.question}
+                </div>
+            `;
+
+            if (q.type === 'mcq') {
+                stage.innerHTML = headerHtml + renderMcqBody(q);
+            } else if (q.type === 'match') {
+                stage.innerHTML = headerHtml + renderMatchBody(q);
+            } else if (q.type === 'fill') {
+                stage.innerHTML = headerHtml + renderFillBody(q);
+            }
+        }
+
+        // 1. RENDER PILIHAN GANDA
+        function renderMcqBody(q) {
+            const selected = userAnswers[q.id];
+            const letters = ['A', 'B', 'C', 'D'];
+            let html = `<div class="space-y-2.5 pt-2">`;
+
+            q.options.forEach((opt, idx) => {
+                const isSelected = selected === idx;
+                let style = "w-full text-left p-3.5 sm:p-4 rounded-2xl border-2 transition flex items-start gap-3 text-xs sm:text-sm font-semibold ";
+
+                if (isQuizSubmitted) {
+                    if (idx === q.correct) {
+                        style += "bg-emerald-50 border-emerald-600 text-emerald-950 ";
+                    } else if (isSelected && idx !== q.correct) {
+                        style += "bg-rose-50 border-rose-500 text-rose-900 ";
+                    } else {
+                        style += "bg-slate-50 border-slate-200 text-slate-500 opacity-70 ";
+                    }
+                } else {
+                    style += isSelected
+                        ? "bg-emerald-50 border-emerald-700 text-emerald-950 shadow-sm "
+                        : "bg-white border-slate-200 hover:border-emerald-500 hover:bg-slate-50 text-slate-800 ";
+                }
+
+                html += `
+                    <button type="button" ${isQuizSubmitted ? 'disabled' : ''} onclick="selectMcqOption(${q.id}, ${idx})" class="${style}">
+                        <span class="w-7 h-7 rounded-lg flex items-center justify-center font-black text-xs flex-shrink-0 ${isSelected ? 'bg-emerald-800 text-white' : 'bg-slate-100 text-slate-700'}">
+                            ${letters[idx]}
+                        </span>
+                        <span class="pt-0.5 leading-snug">${opt}</span>
+                    </button>
+                `;
+            });
+
+            html += `</div>`;
+            return html;
+        }
+
+        function selectMcqOption(qId, optIdx) {
+            if (isQuizSubmitted) return;
+            userAnswers[qId] = optIdx;
+            renderNavigatorGrid();
+            renderCurrentQuestion();
+        }
+
+        // 2. RENDER MENCOCOKKAN (PAIRING)
+        function renderMatchBody(q) {
+            const currentMap = userAnswers[q.id] || {};
+            // Deterministic shuffle for right options based on question id
+            const rightOptions = q.pairs.map(p => p.right);
+            const shuffledRight = [...rightOptions].sort((a, b) => a.localeCompare(b));
+
+            let html = `<div class="space-y-3 pt-2">
+                <p class="text-[11px] font-semibold text-amber-700 bg-amber-50 px-3 py-2 rounded-xl border border-amber-200">
+                    <i class="fa-solid fa-lightbulb mr-1"></i> Pilih pasangan pernyataan yang paling sesuai pada menu dropdown di setiap baris.
+                </p>`;
+
+            q.pairs.forEach((pair, idx) => {
+                const chosenVal = currentMap[idx] || "";
+                let rowBorder = "border-slate-200 bg-slate-50/70";
+                if (isQuizSubmitted) {
+                    rowBorder = chosenVal === pair.right
+                        ? "border-emerald-500 bg-emerald-50"
+                        : "border-rose-400 bg-rose-50";
+                }
+
+                html += `
+                    <div class="p-3.5 rounded-2xl border ${rowBorder} grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
+                        <div class="md:col-span-5 flex items-center gap-2.5">
+                            <span class="w-6 h-6 rounded-lg bg-emerald-800 text-white text-xs font-black flex items-center justify-center flex-shrink-0">${idx + 1}</span>
+                            <span class="text-xs sm:text-sm font-extrabold text-slate-800">${pair.left}</span>
+                        </div>
+                        <div class="hidden md:flex md:col-span-1 justify-center text-slate-400">
+                            <i class="fa-solid fa-arrows-left-right"></i>
+                        </div>
+                        <div class="md:col-span-6">
+                            <select ${isQuizSubmitted ? 'disabled' : ''} onchange="selectMatchPair(${q.id}, ${idx}, this.value)" class="w-full p-2.5 rounded-xl border border-slate-300 bg-white text-xs font-semibold text-slate-800 focus:ring-2 focus:ring-emerald-600 outline-none">
+                                <option value="">-- Pilih Pasangan Jawaban --</option>
+                                ${shuffledRight.map(opt => `<option value="${opt.replace(/"/g, '&quot;')}" ${chosenVal === opt ? 'selected' : ''}>${opt}</option>`).join('')}
+                            </select>
+                            ${isQuizSubmitted && chosenVal !== pair.right ? `<span class="text-[11px] font-bold text-emerald-700 mt-1 block">Kunci: ${pair.right}</span>` : ''}
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+            return html;
+        }
+
+        function selectMatchPair(qId, pairIdx, val) {
+            if (isQuizSubmitted) return;
+            if (!userAnswers[qId]) userAnswers[qId] = {};
+            userAnswers[qId][pairIdx] = val;
+            renderNavigatorGrid();
+            renderCurrentQuestion();
+        }
+
+        // 3. RENDER FILL IN THE BLANK (SERET / KLIK OPSI DI BAWAH)
+        function renderFillBody(q) {
+            const blankCount = q.template.filter(p => typeof p === 'object').length;
+            if (!userAnswers[q.id] || !Array.isArray(userAnswers[q.id])) {
+                userAnswers[q.id] = new Array(blankCount).fill("");
+            }
+            const filledArr = userAnswers[q.id];
+
+            // Build paragraph with drop/tap slots
+            let sentenceHtml = `<div class="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200 text-sm sm:text-base leading-loose font-medium text-slate-800">`;
+
+            q.template.forEach(part => {
+                if (typeof part === 'string') {
+                    sentenceHtml += `<span>${part}</span>`;
+                } else {
+                    const bIdx = part.blankIndex;
+                    const currentWord = filledArr[bIdx];
+                    const isFocused = activeBlankSelection === bIdx;
+
+                    let slotClass = "blank-slot inline-flex items-center justify-center px-3 py-1 mx-1 my-0.5 rounded-xl border-2 text-xs sm:text-sm font-extrabold cursor-pointer align-middle ";
+                    if (isQuizSubmitted) {
+                        const isRight = currentWord === part.answer;
+                        slotClass += isRight
+                            ? "bg-emerald-100 border-emerald-600 text-emerald-900 "
+                            : "bg-rose-100 border-rose-500 text-rose-900 ";
+                    } else if (currentWord) {
+                        slotClass += "bg-emerald-800 border-emerald-900 text-white shadow-sm ";
+                    } else if (isFocused) {
+                        slotClass += "bg-amber-100 border-amber-500 text-amber-900 ring-2 ring-amber-300 ";
+                    } else {
+                        slotClass += "bg-white border-dashed border-slate-400 text-slate-400 hover:border-emerald-600 ";
+                    }
+
+                    sentenceHtml += `
+                        <span
+                            ondragover="handleBlankDragOver(event)"
+                            ondragleave="handleBlankDragLeave(event)"
+                            ondrop="handleBlankDrop(event, ${q.id}, ${bIdx})"
+                            onclick="handleBlankClick(${q.id}, ${bIdx})"
+                            class="${slotClass}"
+                            title="${currentWord ? 'Klik untuk mengosongkan kotak ini' : 'Seret kata ke sini atau klik lalu pilih kata di bawah'}">
+                            ${currentWord ? `${currentWord} ${!isQuizSubmitted ? '<i class="fa-solid fa-xmark ml-1.5 text-[10px] opacity-75"></i>' : ''}` : `[ Kotak ${bIdx + 1} ]`}
+                        </span>
+                    `;
+                }
+            });
+            sentenceHtml += `</div>`;
+
+            // Build Draggable / Tappable Word Bank Below
+            let wordBankHtml = `
+                <div class="pt-3 space-y-2.5">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-extrabold text-slate-700"><i class="fa-solid fa-hand-pointer text-emerald-700 mr-1"></i> Pilihan Kata (Seret ke kotak kosong atau Klik kata):</span>
+                        ${!isQuizSubmitted ? `<button type="button" onclick="resetFillQuestion(${q.id})" class="text-[11px] font-bold text-rose-600 hover:underline">Reset Isian</button>` : ''}
+                    </div>
+                    <div class="flex flex-wrap gap-2.5 p-4 rounded-2xl bg-emerald-50/70 border border-emerald-200/80">
+            `;
+
+            q.wordBank.forEach(word => {
+                const isUsed = filledArr.includes(word);
+                let chipClass = "option-chip px-3.5 py-2 rounded-xl text-xs sm:text-sm font-extrabold border shadow-sm ";
+                if (isUsed) {
+                    chipClass += "bg-slate-200 border-slate-300 text-slate-400 opacity-50 cursor-not-allowed ";
+                } else {
+                    chipClass += "bg-white border-emerald-600 text-emerald-950 hover:bg-emerald-800 hover:text-white cursor-grab active:cursor-grabbing ";
+                }
+
+                wordBankHtml += `
+                    <button
+                        type="button"
+                        draggable="${!isUsed && !isQuizSubmitted}"
+                        ondragstart="handleWordDragStart(event, '${word.replace(/'/g, "\\'")}')"
+                        onclick="handleWordChipClick(${q.id}, '${word.replace(/'/g, "\\'")}')"
+                        ${isUsed || isQuizSubmitted ? 'disabled' : ''}
+                        class="${chipClass}">
+                        <i class="fa-solid fa-grip-vertical text-[10px] mr-1 opacity-50"></i> ${word}
+                    </button>
+                `;
+            });
+
+            wordBankHtml += `</div></div>`;
+
+            // Show answer key if submitted
+            let keyHtml = '';
+            if (isQuizSubmitted) {
+                const keys = q.template.filter(p => typeof p === 'object').map((p, i) => `Kotak ${i + 1}: <b>${p.answer}</b>`).join(' • ');
+                keyHtml = `<div class="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-900">Kunci Jawaban: ${keys}</div>`;
+            }
+
+            return sentenceHtml + wordBankHtml + keyHtml;
+        }
+
+        // Drag & Drop + Tap Handlers for Fill-in-the-blank
+        function handleWordDragStart(e, word) {
+            e.dataTransfer.setData("text/plain", word);
+        }
+
+        function handleBlankDragOver(e) {
+            e.preventDefault();
+            e.currentTarget.classList.add('drag-over');
+        }
+
+        function handleBlankDragLeave(e) {
+            e.currentTarget.classList.remove('drag-over');
+        }
+
+        function handleBlankDrop(e, qId, blankIdx) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('drag-over');
+            if (isQuizSubmitted) return;
+            const word = e.dataTransfer.getData("text/plain");
+            if (word) {
+                userAnswers[qId][blankIdx] = word;
+                activeBlankSelection = null;
+                renderNavigatorGrid();
+                renderCurrentQuestion();
+            }
+        }
+
+        function handleBlankClick(qId, blankIdx) {
+            if (isQuizSubmitted) return;
+            // If already filled, clear it
+            if (userAnswers[qId][blankIdx]) {
+                userAnswers[qId][blankIdx] = "";
+                activeBlankSelection = blankIdx;
+            } else {
+                activeBlankSelection = blankIdx;
+            }
+            renderNavigatorGrid();
+            renderCurrentQuestion();
+        }
+
+        function handleWordChipClick(qId, word) {
+            if (isQuizSubmitted) return;
+            const arr = userAnswers[qId];
+            if (arr.includes(word)) return;
+
+            // Place into active blank if selected, otherwise first empty blank
+            let targetIdx = activeBlankSelection !== null && arr[activeBlankSelection] === ""
+                ? activeBlankSelection
+                : arr.findIndex(v => v === "");
+
+            if (targetIdx !== -1) {
+                arr[targetIdx] = word;
+                // Automatically move focus to next empty blank
+                const nextEmpty = arr.findIndex(v => v === "");
+                activeBlankSelection = nextEmpty !== -1 ? nextEmpty : null;
+                renderNavigatorGrid();
+                renderCurrentQuestion();
+            }
+        }
+
+        function resetFillQuestion(qId) {
+            if (isQuizSubmitted) return;
+            const q = QUIZ_QUESTIONS.find(item => item.id === qId);
+            const blankCount = q.template.filter(p => typeof p === 'object').length;
+            userAnswers[qId] = new Array(blankCount).fill("");
+            activeBlankSelection = 0;
+            renderNavigatorGrid();
+            renderCurrentQuestion();
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIdx > 0) {
+                currentQuestionIdx--;
+                activeBlankSelection = null;
+                renderNavigatorGrid();
+                renderCurrentQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIdx < QUIZ_QUESTIONS.length - 1) {
+                currentQuestionIdx++;
+                activeBlankSelection = null;
+                renderNavigatorGrid();
+                renderCurrentQuestion();
+            }
+        }
+
+        // =========================================================
+        // SCORING & SUBMISSION
+        // =========================================================
+        function evaluateQuestionScore(q) {
+            const ans = userAnswers[q.id];
+            if (ans === undefined || ans === null) return 0;
+
+            if (q.type === 'mcq') {
+                return ans === q.correct ? 1 : 0;
+            }
+            if (q.type === 'match') {
+                let allRight = true;
+                q.pairs.forEach((p, idx) => {
+                    if (ans[idx] !== p.right) allRight = false;
+                });
+                return allRight ? 1 : 0;
+            }
+            if (q.type === 'fill') {
+                const blanks = q.template.filter(p => typeof p === 'object');
+                let allRight = true;
+                blanks.forEach(b => {
+                    if (ans[b.blankIndex] !== b.answer) allRight = false;
+                });
+                return allRight ? 1 : 0;
+            }
+            return 0;
+        }
+
+        function confirmSubmitQuiz() {
+            let unanswered = 0;
+            QUIZ_QUESTIONS.forEach(q => {
+                if (!isQuestionAnswered(q)) unanswered++;
+            });
+
+            const msg = unanswered > 0
+                ? `Masih ada ${unanswered} soal yang belum terjawab lengkap. Apakah kamu yakin ingin mengumpulkan kuis sekarang?`
+                : `Semua 20 soal sudah terjawab! Apakah kamu yakin ingin mengakhiri dan mengirim jawabanmu sekarang?`;
+
+            showConfirmModal('Konfirmasi Pengumpulan Kuis', msg, () => {
+                submitQuizFinal();
+            });
+        }
+
+        async function submitQuizFinal() {
+            isQuizSubmitted = true;
+            let correctCount = 0;
+            QUIZ_QUESTIONS.forEach(q => {
+                correctCount += evaluateQuestionScore(q);
+            });
+
+            const finalScore = correctCount * 5; // 20 soal x 5 poin = 100
+            const submittedAt = new Date().toLocaleString('id-ID');
+
+            // Save locally in memory
+            teacherRecords[currentUser.id] = {
+                studentId: currentUser.id,
+                studentName: currentUser.name,
+                className: "7.1",
+                correctCount: correctCount,
+                score: finalScore,
+                submittedAt: submittedAt,
+                status: "Selesai"
+            };
+
+            // Update Quiz UI
+            document.getElementById('quizStatusBadge').textContent = "Selesai Dikumpulkan";
+            document.getElementById('quizStatusBadge').className = "px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800";
+            document.getElementById('btnSubmitQuizTop').classList.add('hidden');
+            document.getElementById('quizResultSummaryCard').classList.remove('hidden');
+            document.getElementById('finalScoreDisplay').textContent = finalScore;
+            document.getElementById('finalScoreFeedback').textContent =
+                finalScore >= 80
+                    ? `MasyaAllah, Mumtaz! Kamu menjawab benar ${correctCount} dari 20 soal.`
+                    : `Alhamdulillah selesai! Kamu menjawab benar ${correctCount} dari 20 soal. Silakan cek pembahasan tiap nomor.`;
+
+            // Populate Proof Modal
+            document.getElementById('proofName').textContent = currentUser.name;
+            document.getElementById('proofTime').textContent = submittedAt;
+            document.getElementById('proofScore').textContent = finalScore;
+            document.getElementById('proofCorrectDetail').textContent = `Benar ${correctCount} dari 20 Soal`;
+
+            renderNavigatorGrid();
+            renderCurrentQuestion();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Siapkan rincian jawaban untuk dikirim ke Google Apps Script
+            const detailedAnswers = QUIZ_QUESTIONS.map(q => {
+                const isRight = evaluateQuestionScore(q) === 1;
+                const ans = userAnswers[q.id];
+                let ansText = "-";
+
+                if (q.type === 'mcq' && typeof ans === 'number') {
+                    const letters = ['A', 'B', 'C', 'D'];
+                    ansText = `${letters[ans]}. ${q.options[ans]}`;
+                } else if (q.type === 'match' && ans) {
+                    ansText = q.pairs.map((p, idx) => `${p.left} -> ${ans[idx] || '(Kosong)'}`).join(' | ');
+                } else if (q.type === 'fill' && Array.isArray(ans)) {
+                    ansText = ans.map((w, idx) => `Kotak ${idx + 1}: ${w || '(Kosong)'}`).join(', ');
+                }
+
+                return {
+                    questionNo: q.id,
+                    typeLabel: q.category,
+                    studentAnswerText: ansText,
+                    isCorrect: isRight
+                };
+            });
+
+            // Send to Google Apps Script if configured
+            if (!DEFAULT_SCRIPT_URL.includes("ISI_DENGAN_URL")) {
+                try {
+                    await fetch(DEFAULT_SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            action: 'submitQuiz',
+                            studentId: currentUser.id,
+                            studentName: currentUser.name,
+                            className: "7.1",
+                            correctCount: correctCount,
+                            score: finalScore,
+                            submissionTime: submittedAt,
+                            answers: userAnswers,
+                            detailedAnswers: detailedAnswers
+                        })
+                    });
+                } catch (e) {
+                    console.log("Sync note:", e.message);
+                }
+            }
+        }
+
+        // =========================================================
+        // TEACHER DASHBOARD FUNCTIONS
+        // =========================================================
+        async function manualRefreshTeacherDashboard() {
+            const icon = document.getElementById('iconTeacherRefresh');
+            if (icon) icon.classList.add('fa-spin');
+
+            if (!DEFAULT_SCRIPT_URL.includes("ISI_DENGAN_URL")) {
+                try {
+                    const res = await fetch(`${DEFAULT_SCRIPT_URL}?action=getAllQuizData&_t=${Date.now()}`);
+                    const json = await res.json();
+                    if (json && json.status === 'success' && json.data) {
+                        Object.assign(teacherRecords, json.data);
+                    }
+                } catch (e) {
+                    console.log("Fetch teacher error:", e.message);
+                }
+            }
+
+            renderTeacherTable();
+            setTimeout(() => {
+                if (icon) icon.classList.remove('fa-spin');
+            }, 500);
+        }
+
+        function renderTeacherTable() {
+            const tbody = document.getElementById('teacherTableBody');
+            const search = document.getElementById('teacherSearchInput').value.trim().toLowerCase();
+            tbody.innerHTML = '';
+
+            let submittedCount = 0;
+            let totalScoreSum = 0;
+
+            STUDENTS_71.forEach((st, idx) => {
+                const rec = teacherRecords[st.id];
+                if (rec) {
+                    submittedCount++;
+                    totalScoreSum += rec.score;
+                }
+
+                if (!search || st.name.toLowerCase().includes(search) || st.nickname.toLowerCase().includes(search)) {
+                    const tr = document.createElement('tr');
+                    tr.className = "hover:bg-slate-50 transition";
+                    tr.innerHTML = `
+                        <td class="p-3.5 text-center font-bold text-slate-500">${idx + 1}</td>
+                        <td class="p-3.5">
+                            <span class="font-bold text-slate-900 block">${st.name}</span>
+                            <span class="text-[10px] text-slate-400">Panggilan: "${st.nickname}"</span>
+                        </td>
+                        <td class="p-3.5 text-center">
+                            ${rec
+                                ? '<span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Selesai</span>'
+                                : '<span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-rose-100 text-rose-700">Belum</span>'}
+                        </td>
+                        <td class="p-3.5 text-center font-bold text-slate-700">${rec ? `${rec.correctCount}/20` : '-'}</td>
+                        <td class="p-3.5 text-center font-black text-sm ${rec ? 'text-emerald-700' : 'text-slate-400'}">${rec ? rec.score : '0'}</td>
+                        <td class="p-3.5 text-center text-[11px] text-slate-500">${rec ? rec.submittedAt : '-'}</td>
+                    `;
+                    tbody.appendChild(tr);
+                }
+            });
+
+            document.getElementById('statTotalStudents').textContent = STUDENTS_71.length;
+            document.getElementById('statSubmittedCount').textContent = submittedCount;
+            document.getElementById('statPendingCount').textContent = STUDENTS_71.length - submittedCount;
+            document.getElementById('statAverageScore').textContent = submittedCount > 0 ? Math.round(totalScoreSum / submittedCount) : 0;
+        }
+
+        function copyTeacherScores() {
+            let tsv = "No\tKelas\tNama Murid\tStatus\tBenar\tNilai Akhir\tWaktu Selesai\n";
+            STUDENTS_71.forEach((st, i) => {
+                const rec = teacherRecords[st.id];
+                tsv += `${i + 1}\t7.1\t${st.name}\t${rec ? 'Selesai' : 'Belum'}\t${rec ? rec.correctCount : 0}\t${rec ? rec.score : 0}\t${rec ? rec.submittedAt : '-'}\n`;
+            });
+
+            const textarea = document.createElement('textarea');
+            textarea.value = tsv;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            showModal('Berhasil Disalin!', 'Rekap nilai Kelas 7.1 berhasil disalin ke Clipboard. Silakan Paste (Ctrl+V) di Excel atau Google Spreadsheet.', 'success');
+        }
+
+        function exportTeacherCsv() {
+            let csv = "No,Kelas,Nama Murid,Status,Benar,Nilai Akhir,Waktu Selesai\n";
+            STUDENTS_71.forEach((st, i) => {
+                const rec = teacherRecords[st.id];
+                csv += `${i + 1},"7.1","${st.name}","${rec ? 'Selesai' : 'Belum'}",${rec ? rec.correctCount : 0},${rec ? rec.score : 0},"${rec ? rec.submittedAt : '-'}"\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = "Rekap_Nilai_Kuis_Fiqih_Kelas_7_1.csv";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        // =========================================================
+        // MODALS
+        // =========================================================
+        function showModal(title, msg, type = 'info') {
+            const iconBox = document.getElementById('modalIconContainer');
+            if (type === 'success') {
+                iconBox.className = "w-14 h-14 rounded-full flex items-center justify-center mx-auto text-2xl bg-emerald-100 text-emerald-600";
+                iconBox.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+            } else if (type === 'warning') {
+                iconBox.className = "w-14 h-14 rounded-full flex items-center justify-center mx-auto text-2xl bg-amber-100 text-amber-600";
+                iconBox.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
+            } else if (type === 'error') {
+                iconBox.className = "w-14 h-14 rounded-full flex items-center justify-center mx-auto text-2xl bg-rose-100 text-rose-600";
+                iconBox.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>';
+            } else {
+                iconBox.className = "w-14 h-14 rounded-full flex items-center justify-center mx-auto text-2xl bg-blue-100 text-blue-600";
+                iconBox.innerHTML = '<i class="fa-solid fa-circle-info"></i>';
+            }
+
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalMessage').textContent = msg;
+            document.getElementById('modalButtonsContainer').innerHTML = `
+                <button onclick="closeCustomModal()" class="w-full bg-emerald-800 hover:bg-emerald-900 text-white font-bold py-2.5 rounded-xl text-xs shadow-md">
+                    Mengerti
+                </button>
+            `;
+            document.getElementById('customModal').classList.remove('hidden');
+        }
+
+        function showConfirmModal(title, msg, onConfirm) {
+            const iconBox = document.getElementById('modalIconContainer');
+            iconBox.className = "w-14 h-14 rounded-full flex items-center justify-center mx-auto text-2xl bg-amber-100 text-amber-600";
+            iconBox.innerHTML = '<i class="fa-solid fa-circle-question"></i>';
+
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalMessage').textContent = msg;
+            document.getElementById('modalButtonsContainer').innerHTML = `
+                <button onclick="closeCustomModal()" class="flex-1 bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold py-2.5 rounded-xl text-xs">
+                    Batal
+                </button>
+                <button id="btnModalConfirmAction" class="flex-1 bg-emerald-800 hover:bg-emerald-900 text-white font-bold py-2.5 rounded-xl text-xs shadow-md">
+                    Ya, Kumpulkan
+                </button>
+            `;
+            document.getElementById('btnModalConfirmAction').onclick = () => {
+                closeCustomModal();
+                onConfirm();
+            };
+            document.getElementById('customModal').classList.remove('hidden');
+        }
+
+        function closeCustomModal() {
+            document.getElementById('customModal').classList.add('hidden');
+        }
+
+        function openProofModal() {
+            document.getElementById('proofModal').classList.remove('hidden');
+        }
+
+        function closeProofModal() {
+            document.getElementById('proofModal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
